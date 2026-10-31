@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+  :root { color-scheme: light dark; } /* скроллбары и контролы тоже следуют теме */
+  body { width: 320px; margin: 0; font: 13px/1.45 system-ui, "Segoe UI", sans-serif; background: #fff; color: #202124; }
+  .head { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f8f9fa; border-bottom: 1px solid #e0e0e0; }
+  .head b { font-size: 13px; }
+  .head button { border: none; background: none; color: #5f6368; cursor: pointer; font-size: 12px; padding: 2px 4px; }
+  .head button:hover { color: #d93025; }
+  .empty { padding: 24px 16px; color: #5f6368; text-align: center; }
+  ul { list-style: none; margin: 0; padding: 0; max-height: 320px; overflow-y: auto; }
+  li { padding: 8px 12px; border-bottom: 1px solid #f1f3f4; }
+  .top { display: flex; align-items: center; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: #9aa0a6; }
+  .blocked .dot { background: #d93025; }
+  .ok .dot { background: #188038; }
+  .target { font-weight: 600; word-break: break-all; color: #1a73e8; text-decoration: none; flex: 1; }
+  .target:hover { text-decoration: underline; }
+  .status { flex: none; font-size: 12px; font-weight: 600; color: #5f6368; }
+  .blocked .status { color: #d93025; }
+  .ok .status { color: #188038; }
+  .details { margin-top: 4px; color: #5f6368; font-size: 12px; white-space: pre-wrap; word-break: break-all; }
+
+  /* Тёмная тема — следует за темой Chrome (Настройки → Внешний вид) или ОС */
+  @media (prefers-color-scheme: dark) {
+    body { background: #202124; color: #e8eaed; }
+    .head { background: #292a2d; border-bottom-color: #3c4043; }
+    .head button { color: #9aa0a6; }
+    .head button:hover { color: #f28b82; }
+    .empty { color: #9aa0a6; }
+    li { border-bottom-color: #3c4043; }
+    .target { color: #8ab4f8; }
+    .status { color: #9aa0a6; }
+    .blocked .dot { background: #f28b82; }
+    .ok .dot { background: #81c995; }
+    .blocked .status { color: #f28b82; }
+    .ok .status { color: #81c995; }
+    .details { color: #9aa0a6; }
+  }
+</style>
+</head>
+<body>
+  <div class="head"><b>Cheburcheck</b><button id="clear" title="Очистить историю">очистить</button></div>
+  <div id="list"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

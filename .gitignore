@@ -1,0 +1,7 @@
+# ОС / редакторы
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+.idea/
+.vscode/

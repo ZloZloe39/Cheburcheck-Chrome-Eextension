@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Cheburcheck — отчёт</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; font: 15px/1.55 system-ui, "Segoe UI", sans-serif; background: #fff; color: #202124; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; }
+  .card { border: 1px solid #e0e0e0; border-radius: 12px; padding: 18px 22px; margin-bottom: 18px; background: #fff; }
+  .top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; background: #9aa0a6; flex: none; }
+  h1 { font-size: 20px; margin: 0; word-break: break-all; }
+  h2 { font-size: 13px; margin: 0 0 10px; color: #5f6368; text-transform: uppercase; letter-spacing: .4px; }
+  .badge { padding: 3px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: #f1f3f4; color: #5f6368; margin-left: auto; }
+  .time { margin-top: 8px; color: #9aa0a6; font-size: 13px; }
+  .muted { color: #5f6368; font-size: 13px; }
+  pre#details { white-space: pre-wrap; word-break: break-all; font-family: inherit; margin: 0; font-size: 14px; }
+  .actions { display: flex; align-items: center; gap: 16px; margin: 4px 0 18px; flex-wrap: wrap; }
+  button.primary { background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-size: 14px; font-weight: 600; cursor: pointer; }
+  button.primary:hover { background: #1765cc; }
+  #cc-link { color: #1a73e8; text-decoration: none; font-size: 14px; }
+  #cc-link:hover { text-decoration: underline; }
+  iframe { width: 100%; height: 480px; border: 1px solid #e0e0e0; border-radius: 8px; background: #f8f9fa; }
+  .blocked .dot { background: #d93025; }
+  .blocked .badge { background: #fce8e6; color: #c5221f; }
+  .ok .dot { background: #188038; }
+  .ok .badge { background: #e6f4ea; color: #137333; }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #202124; color: #e8eaed; }
+    .card { background: #292a2d; border-color: #3c4043; }
+    h2, .muted, .time { color: #9aa0a6; }
+    .badge { background: #3c4043; color: #9aa0a6; }
+    button.primary { background: #8ab4f8; color: #202124; }
+    button.primary:hover { background: #aecbfa; }
+    #cc-link { color: #8ab4f8; }
+    iframe { border-color: #3c4043; background: #202124; }
+    .blocked .dot { background: #f28b82; }
+    .blocked .badge { background: rgba(242, 139, 130, .15); color: #f28b82; }
+    .ok .dot { background: #81c995; }
+    .ok .badge { background: rgba(129, 201, 149, .15); color: #81c995; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" id="result-card">
+      <div class="top">
+        <span class="dot"></span>
+        <h1 id="domain">…</h1>
+        <span class="badge" id="badge">загрузка…</span>
+      </div>
+      <div class="time" id="time"></div>
+    </div>
+
+    <div class="card">
+      <h2>Детали проверки</h2>
+      <p class="muted" id="no-data">Для этого сайта нет данных в истории проверок.</p>
+      <pre id="details" hidden></pre>
+    </div>
+
+    <div class="actions">
+      <button id="open-site" class="primary">Открыть сайт</button>
+      <a id="cc-link" href="#">Подробнее на cheburcheck.ru</a>
+    </div>
+
+    <div class="card">
+      <h2>Предпросмотр сайта</h2>
+      <iframe id="preview"></iframe>
+      <p class="muted">Если сайт не отображается — скорее всего, он запрещает встраивание (X-Frame-Options / CSP). Воспользуйтесь кнопкой «Открыть сайт».</p>
+    </div>
+  </div>
+  <script src="results.js"></script>
+</body>
+</html>
